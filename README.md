@@ -39,22 +39,6 @@ As a user, I would like to:
 
 ![](Planner/ERD.jpg)
 
-### User Views
-| Route                   | Description |
-| -------------------- | -------------------------------------------- |
-| /sign-up               | allows users to create a new account     |
-| /sign-in                | allows users to sign into their account    |
-| /sign-out              | allows users to sign out of their account |
-| /change-password | allows users to change their password   |
-
-### Artifact Views
-| Route                  | Description |
-| -------------------- | ------------------------------------------------------------- |
-| /                         | Index page - to see all Artifact's (Note: This is also the filter's page)                                |
-| /artifact/:id          | Show page - to see information about a specific artifact   |
-| /addArtifact           | Create/upload page - User upload pictore and API will return data. User will add/create to there profile. |
-| /artifact/:id/edit   | Edit if it's a fravarate |
-
 ### Roles
 - Manager: Tyson
 - Front-End SME: Efrain
