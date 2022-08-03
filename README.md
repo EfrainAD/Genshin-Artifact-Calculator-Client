@@ -24,6 +24,24 @@ As a user, I would like to:
   - favorite
 - have a one-click feature that, drawing from all the artifacts I own, finds the best artifact combination for a specified character (stretch goal)
 
+### Wireframes
+
+![](/wireframes/1.jpeg)
+![](/wireframes/2.jpeg)
+![](/wireframes/3.jpeg)
+![](/wireframes/4.jpeg)
+![](/wireframes/5.jpeg)
+![](/wireframes/6.jpeg)
+![](/wireframes/7.jpeg)
+![](/wireframes/8.jpeg)
+
+
+
+
+
+
+
+
 ### Roles
 - Manager: Tyson
 - Front-End SME: Efrain
