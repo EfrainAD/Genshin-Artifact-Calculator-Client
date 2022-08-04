@@ -1,4 +1,5 @@
 // import ArtifactsIndex from './artifacts/ArtifactsIndex'
+import './style.css'
 
 const Home = (props) => {
 	// const { msgAlert, user } = props

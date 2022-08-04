@@ -5,6 +5,8 @@ import {Button, ButtonGroup} from 'react-bootstrap'
 import { signOut } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
+import './style.css'
+
 const SignOut = (props) => {
 	const { msgAlert, clearUser, user } = props
     console.log(props)
