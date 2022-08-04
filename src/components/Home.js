@@ -1,4 +1,9 @@
+
+// import ArtifactsIndex from './artifacts/ArtifactsIndex'
+import './style.css'
+=======
 import ArtifactsIndex from './artifacts/ArtifactsIndex'
+
 
 const Home = (props) => {
 	// const { msgAlert, user } = props
