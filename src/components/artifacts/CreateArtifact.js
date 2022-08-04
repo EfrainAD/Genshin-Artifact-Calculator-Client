@@ -33,9 +33,27 @@ const CreateArtifact = (props) => {
                 updatedValue = parseInt(e.target.value)
             }
 
-            const updatedArtifact = {
-                [updatedName]: updatedValue
+            let updatedArtifact = null
+            if (updatedName === 'substats.stat') {
+                updatedArtifact = {
+                    ['substats']: {
+                        stat: updatedValue
+                    }
+                }
+            } else if (updatedName === 'substats.amount') {
+                updatedArtifact = {
+                    ['substats']: {
+                        ...prevArtifact.substats,
+                        amount: updatedValue
+                    }
+                }
+            } else {
+                updatedArtifact = {
+                    ...prevArtifact.substats,
+                    [updatedName]: updatedValue
+                }
             }
+            
             return {
                 ...prevArtifact,
                 ...updatedArtifact
