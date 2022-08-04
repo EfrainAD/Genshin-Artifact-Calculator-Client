@@ -68,4 +68,4 @@ const ArtifactsIndex = (props) => {
     )
 }
 
-export default artifactsIndex
+export default ArtifactsIndex
