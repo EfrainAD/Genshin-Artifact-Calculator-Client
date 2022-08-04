@@ -79,19 +79,20 @@ const ShowArtifact = (props) => {
     if (!artifact) {
         return <LoadingScreen />
     }
-
+    
     return (
         <>
             <Container className="fluid">
                 <Card>
-                    <Card.Header>{ artifact.fullTitle }</Card.Header>
+                    <Card.Header>{ artifact.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Age: { artifact.age }</small></div>
-                            <div><small>Type: { artifact.type }</small></div>
-                            <div><small>
-                                Adoptable: { artifact.adoptable ? 'yes' : 'no'}
-                            </small></div>
+                            <div><small>slot: { artifact.slot }</small></div>
+                            <div><small>level: { artifact.level }</small></div>
+                            <div><small>mainStat: { artifact.mainStat }</small></div>
+                            <div><small>mainStatAmount: { artifact.mainStatAmount }</small></div>
+                            <div><small>substats stat: { artifact.substats[0].stat }</small></div>
+                            <div><small>substats amount: { artifact.substats[0].amount }</small></div>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
