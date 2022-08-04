@@ -40,16 +40,17 @@ const ArtifactsIndex = (props) => {
                 })
                 setError(true)
             })
-            getAllCharacters()
-            .then(res => setCharacters(res.data.artifacts))
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error Getting Characters',
-                    message: messages.getCharactersFailure,
-                    variant: 'danger',
-                })
-                setError(true)
-            })
+            // UNDO
+            // getAllCharacters()
+            // .then(res => setCharacters(res.data.artifacts))
+            // .catch(err => {
+            //     msgAlert({
+            //         heading: 'Error Getting Characters',
+            //         message: messages.getCharactersFailure,
+            //         variant: 'danger',
+            //     })
+            //     setError(true)
+            // })
     }, [])
 
     if (error) {

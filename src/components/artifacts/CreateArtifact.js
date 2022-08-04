@@ -12,30 +12,25 @@ const CreateArtifact = (props) => {
 
     const [artifact, setArtifact] = useState({
         name: '',
-        type: '',
-        age: '',
-        adoptable: false
+        slot: '',
+        level: '',
+        mainStat: '',
+        mainStatAmount: '',
+        substats: [{
+            stat: '',
+            amount: ''}]
     })
 
     console.log('this is artifact in createArtifact', artifact)
 
     const handleChange = (e) => {
         setArtifact(prevArtifact => {
-            let updatedValue = e.target.value
             const updatedName = e.target.name
-
-            console.log('this is the input type', e.target.type)
+            let updatedValue = e.target.value
 
             if (e.target.type === 'number') {
                 // this is looking at the input type, and changing it from the default, which is a string, into an actual number
                 updatedValue = parseInt(e.target.value)
-            }
-
-            // this handles the checkbox, changing on to true etc
-            if (updatedName === "adoptable" && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === "adoptable" && !e.target.checked) {
-                updatedValue = false
             }
 
             const updatedArtifact = {

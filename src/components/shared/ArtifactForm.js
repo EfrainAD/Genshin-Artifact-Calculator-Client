@@ -57,7 +57,7 @@ const ArtifactForm = (props) => {
                 <Form.Control
                     placeholder="What is it's sub stats?"
                     type="string"
-                    name="substatsStat"
+                    name="substats.stat"
                     id="substatsStat"
                     value={ artifact.substatsStat }
                     onChange={ handleChange }
@@ -66,7 +66,7 @@ const ArtifactForm = (props) => {
                 <Form.Control
                     placeholder="What is it's main stat amount?"
                     type="number"
-                    name="substatsAmount"
+                    name="substats.amount"
                     id="substatsAmount"
                     value={ artifact.substatsAmount }
                     onChange={ handleChange }
