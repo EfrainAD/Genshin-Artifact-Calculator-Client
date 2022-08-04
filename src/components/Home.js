@@ -1,5 +1,9 @@
+
 // import ArtifactsIndex from './artifacts/ArtifactsIndex'
 import './style.css'
+=======
+import ArtifactsIndex from './artifacts/ArtifactsIndex'
+
 
 const Home = (props) => {
 	// const { msgAlert, user } = props
@@ -10,7 +14,7 @@ const Home = (props) => {
 	return (
 		<>
 			<h2>See the Artifacts</h2>
-			{/* <ArtifactsIndex msgAlert={ msgAlert } /> */}
+			<ArtifactsIndex msgAlert={ msgAlert } />
 		</>
 	)
 }

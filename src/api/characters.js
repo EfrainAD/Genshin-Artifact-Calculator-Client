@@ -1,20 +1,31 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createCharacter = (user, artifactId, newCharacter) => {
-    console.log('the user in createCharacter', user)
-    console.log('the newCharacter in createCharacter', newCharacter)
+// READ => INDEX
+export const getAllCharacters = () => {
+    return axios(`${apiUrl}/characters`)
+}
+
+// READ => SHOW
+export const getOneCharacter = (id) => {
+    return axios(`${apiUrl}/characters/${id}`)
+}
+
+export const createCharacter = (user, newCharacter) => {
 	return axios({
-		url: `${apiUrl}/characters/${artifactId}`,
+		url: apiUrl + '/characters',
 		method: 'POST',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
 		data: { character: newCharacter }
 	})
 }
 
-export const updateCharacter = (user, artifactId, updatedCharacter) => {
+export const updateCharacter = (user, updatedCharacter) => {
     console.log('this is updatedCharacter', updatedCharacter)
 	return axios({
-		url: `${apiUrl}/characters/${artifactId}/${updatedCharacter._id}`,
+		url: `${apiUrl}/characters/${updatedCharacter.id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
@@ -23,12 +34,12 @@ export const updateCharacter = (user, artifactId, updatedCharacter) => {
 	})
 }
 
-export const deleteCharacter = (user, artifactId, characterId) => {
-	return axios({
-		url: `${apiUrl}/characters/${artifactId}/${characterId}`,
-		method: 'DELETE',
-		headers: {
-			Authorization: `Token token=${user.token}`,
-		}
-	})
+export const removeCharacter = (user, characterId) => {
+    return axios({
+        url: `${apiUrl}/characters/${characterId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`,
+        }
+    })
 }

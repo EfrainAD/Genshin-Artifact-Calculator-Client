@@ -14,6 +14,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowArtifact from './components/artifacts/ShowArtifact'
 import CreateArtifact from './components/artifacts/CreateArtifact'
+import CreateCharacter from './components/characters/CreateCharacter'
 
 const App = () => {
 
@@ -79,6 +80,14 @@ const App = () => {
 					element={
 						<RequireAuth user={ user }>
 							<CreateArtifact msgAlert={msgAlert} user={user}/>
+						</RequireAuth>  
+					}
+				/>
+				<Route
+					path="/addCharacter"
+					element={
+						<RequireAuth user={ user }>
+							<CreateCharacter msgAlert={msgAlert} user={user}/>
 						</RequireAuth>  
 					}
 				/>
