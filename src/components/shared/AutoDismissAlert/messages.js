@@ -6,6 +6,13 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
+	getArtifactsFailure: 'Error fetching artifacts.',
+	createArtifactSuccess: 'Artifact created Successfully!',
+	createArtifactFailure: 'Something went wrong, please try again.',
+	updateArtifactSuccess: 'Artifact updated Successfully!',
+	updateArtifactFailure: 'Couldnt update artifact, please try again.',
+	removeArtifactSuccess: 'Artifact has been destroyed!',
+	removeArtifactFailure: 'Couldnt remove artifact, please try again.'
 }
 
 module.exports = messages
