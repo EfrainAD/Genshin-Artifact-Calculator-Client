@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
 import { getAllArtifacts } from '../../api/artifacts'
+import { getAllCharacters } from '../../api/characters'
 import messages from '../shared/AutoDismissAlert/messages'
 
 // ArtifactsIndex should make a request to the api
@@ -19,7 +20,9 @@ const cardContainerStyle = {
 
 const ArtifactsIndex = (props) => {
     const [artifacts, setArtifacts] = useState(null)
+    const [characters, setCharacters] = useState(null)
     const [error, setError] = useState(false)
+    const filter = 'artifacts' // or characters
 
     const { msgAlert } = props
 
@@ -37,35 +40,74 @@ const ArtifactsIndex = (props) => {
                 })
                 setError(true)
             })
+            getAllCharacters()
+            .then(res => setCharacters(res.data.artifacts))
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error Getting Characters',
+                    message: messages.getCharactersFailure,
+                    variant: 'danger',
+                })
+                setError(true)
+            })
     }, [])
 
     if (error) {
         return <p>Error!</p>
     }
+    // ToDo if time we can make this code more DRY.
+    if (filter === 'artifacts') {
+        // If artifacts haven't been loaded yet, show a loading message
+        if (!artifacts) {
+            return <LoadingScreen />
+        } else if (artifacts.length === 0) {
+            return <p>No artifacts yet. Better add some.</p>
+        }
 
-    // If artifacts haven't been loaded yet, show a loading message
-    if (!artifacts) {
-        return <LoadingScreen />
-    } else if (artifacts.length === 0) {
-        return <p>No artifacts yet. Better add some.</p>
+        const artifactCards = artifacts.map(artifact => (
+            <Card style={{ width: '30%', margin: 5}} key={ artifact.id }>
+                <Card.Header>{ artifact.fullTitle }</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        <Link to={`/artifacts/${artifact.id}`}>View { artifact.name }</Link>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        ))
+
+        return (
+            <div style={ cardContainerStyle }>
+                <button onClick={()=>{filter='character'}}>Swithc</button>
+                { artifactCards }
+            </div>
+        )
+    } else { // artifact === 'Character
+        // If characters haven't been loaded yet, show a loading message
+        if (!characters) {
+            return <LoadingScreen />
+        } else if (characters.length === 0) {
+            return <p>No characters yet. Better add some.</p>
+        }
+
+        const characterCards = characters.map(character => (
+            <Card style={{ width: '30%', margin: 5}} key={ character.id }>
+                <Card.Header>{ character.fullTitle }</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        <Link to={`/characters/${character.id}`}>View { character.name }</Link>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        ))
+
+        return (
+            <div style={ cardContainerStyle }>
+                { characterCards }
+            </div>
+        )
     }
 
-    const artifactCards = artifacts.map(artifact => (
-        <Card style={{ width: '30%', margin: 5}} key={ artifact.id }>
-            <Card.Header>{ artifact.fullTitle }</Card.Header>
-            <Card.Body>
-                <Card.Text>
-                    <Link to={`/artifacts/${artifact.id}`}>View { artifact.name }</Link>
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    ))
-
-    return (
-        <div style={ cardContainerStyle }>
-            { artifactCards }
-        </div>
-    )
+    
 }
 
 export default ArtifactsIndex
