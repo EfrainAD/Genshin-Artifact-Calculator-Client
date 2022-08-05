@@ -57,7 +57,7 @@ const ShowArtifact = (props) => {
     // here we'll declare a function that runs which will remove the artifact
     // this function's promise chain should send a message, and then go somewhere
     const removeTheArtifact = () => {
-        removeArtifact(user, artifact.id)
+        removeArtifact(user, id)
             // on success send a success message
             .then(() => {
                 msgAlert({
@@ -82,6 +82,17 @@ const ShowArtifact = (props) => {
         return <LoadingScreen />
     }
 
+    const substats = artifact.substats.map(substat => (
+        <div>
+            <div>
+                <small>substats stat: { substat.stat }</small>
+            </div>
+            <div>
+                <small>substats amount: { substat.amount }</small>
+            </div>
+        </div>
+    ))
+
     return (
         <>
             <Container className="fluid">
@@ -93,10 +104,10 @@ const ShowArtifact = (props) => {
                             <div><small>level: { artifact.level }</small></div>
                             <div><small>mainStat: { artifact.mainStat }</small></div>
                             <div><small>mainStatAmount: { artifact.mainStatAmount }</small></div>
-                            <div><small>substats stat: { artifact.substats[0].stat }</small></div>
-                            <div><small>substats amount: { artifact.substats[0].amount }</small></div>
+                            { substats }
                         </Card.Text>
                     </Card.Body>
+                    {/* if condistion should be removed on CLEANUP */}
                     <Card.Footer>
                         {
                             artifact.owner && user && artifact.owner === user._id
