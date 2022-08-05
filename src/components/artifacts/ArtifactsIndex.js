@@ -24,13 +24,13 @@ const ArtifactsIndex = (props) => {
     const [error, setError] = useState(false)
     const filter = 'artifacts' // or characters
 
-    const { msgAlert } = props
+    const { user, msgAlert } = props
 
     console.log('Props in ArtifactsIndex', props)
 
     useEffect(() => {
         console.log(props)
-        getAllArtifacts()
+        getAllArtifacts(user)
             .then(res => setArtifacts(res.data.artifacts))
             .catch(err => {
                 msgAlert({
@@ -53,6 +53,9 @@ const ArtifactsIndex = (props) => {
             // })
     }, [])
 
+    if (!user) {
+        return <p>You need to sign in!</p>
+    }
     if (error) {
         return <p>Error!</p>
     }
