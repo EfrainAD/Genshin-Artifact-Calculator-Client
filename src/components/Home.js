@@ -6,10 +6,18 @@ const Home = (props) => {
 
 	const { user, msgAlert } = props
 
+	//////////// Why user for not signed in but !user for signed in.
 	return (
 		<>
 			<h2>See the Artifacts</h2>
-			<ArtifactsIndex msgAlert={ msgAlert } user={ user } />
+			{
+				user ?
+					<ArtifactsIndex msgAlert={ msgAlert } user={ user } />
+				:
+					<p>You need to sign in!</p>
+			}
+			
+			
 		</>
 	)
 }
