@@ -36,6 +36,7 @@ const ShowArtifact = (props) => {
     const { user, msgAlert } = props
     console.log('user in props', user)
     console.log('the artifact in showArtifact', artifact)
+    // console.log(`${artifact.owner} === ${user._id}`)
     // destructuring to get the id value from our route parameters
 
     useEffect(() => {
@@ -79,7 +80,7 @@ const ShowArtifact = (props) => {
     if (!artifact) {
         return <LoadingScreen />
     }
-    
+
     return (
         <>
             <Container className="fluid">
@@ -97,7 +98,7 @@ const ShowArtifact = (props) => {
                     </Card.Body>
                     <Card.Footer>
                         {
-                            artifact.owner && user && artifact.owner._id === user._id 
+                            artifact.owner && user && artifact.owner === user._id
                             ?
                             <>
                                 <Button onClick={() => setEditModalShow(true)} 
