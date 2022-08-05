@@ -39,8 +39,9 @@ export const createArtifact = (user, newArtifact) => {
 
 export const updateArtifact = (user, updatedArtifact) => {
     console.log('this is updatedArtifact', updatedArtifact)
+
 	return axios({
-		url: `${apiUrl}/artifacts/${updatedArtifact.id}`,
+		url: `${apiUrl}/artifacts/${updatedArtifact._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,

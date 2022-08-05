@@ -15,30 +15,35 @@ const EditArtifactModal = (props) => {
 
     const handleChange = (e) => {
         setArtifact(prevArtifact => {
-            let updatedValue = e.target.value
             const updatedName = e.target.name
+            let updatedValue = e.target.value
+            let updatedId = e.target.id
+            // if (updatedId = null){
+            //     updatedId = 0}
 
-            console.log('this is the input type', e.target.type)
+            console.log('HI e.target.name: %s e.target.value: %s', e.target.name, e.target.value)
 
             if (e.target.type === 'number') {
-                // this is looking at the input type, and changing it from the default, which is a string, into an actual number
                 updatedValue = parseInt(e.target.value)
             }
 
+            let newArr = [...artifact.substats]
             let updatedArtifact = null
+            
             if (updatedName === 'substats.stat') {
-                updatedArtifact = {
-                    ['substats']: {
-                        stat: updatedValue
-                    }
+                newArr[updatedId] = {
+                    ...prevArtifact.substats[updatedId],
+                    stat: updatedValue
                 }
+                updatedArtifact = {substats: [...newArr]}
             } else if (updatedName === 'substats.amount') {
-                updatedArtifact = {
-                    ['substats']: {
-                        ...prevArtifact.substats,
-                        amount: updatedValue
-                    }
+                console.log('EEEEEEEEEEe.target.id/updatedId: ', updatedId)
+                newArr[updatedId] = {
+                    ...prevArtifact.substats[updatedId],
+                    amount: updatedValue
                 }
+                updatedArtifact = {substats: [...newArr]}
+                // console.log('this updatedArtifact: ', updatedArtifact)
             } else {
                 updatedArtifact = {
                     ...prevArtifact.substats,
@@ -56,7 +61,6 @@ const EditArtifactModal = (props) => {
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()
-
         updateArtifact(user, artifact)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
