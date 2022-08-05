@@ -16,6 +16,8 @@ import ShowArtifact from './components/artifacts/ShowArtifact'
 import CreateArtifact from './components/artifacts/CreateArtifact'
 import CreateCharacter from './components/characters/CreateCharacter'
 
+import './App.css'
+
 const App = () => {
 
   const [user, setUser] = useState(null)
@@ -44,7 +46,7 @@ const App = () => {
 	}
 
 	return (
-		<Fragment>
+		<div id="main">
 			<Header user={user} />
 			<Routes>
 				<Route 
@@ -105,7 +107,7 @@ const App = () => {
 					deleteAlert={deleteAlert}
 				/>
 			))}
-		</Fragment>
+		</div>
 	)
 }
 
