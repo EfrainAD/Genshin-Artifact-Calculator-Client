@@ -12,6 +12,7 @@ export const getOneArtifact = (id) => {
 }
 
 export const createArtifact = (user, newArtifact) => {
+	console.log('newArtifact', newArtifact)
 	return axios({
 		url: apiUrl + '/artifacts',
 		method: 'POST',

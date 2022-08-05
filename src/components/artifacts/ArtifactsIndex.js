@@ -40,16 +40,17 @@ const ArtifactsIndex = (props) => {
                 })
                 setError(true)
             })
-            getAllCharacters()
-            .then(res => setCharacters(res.data.artifacts))
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error Getting Characters',
-                    message: messages.getCharactersFailure,
-                    variant: 'danger',
-                })
-                setError(true)
-            })
+            // UNDO
+            // getAllCharacters()
+            // .then(res => setCharacters(res.data.artifacts))
+            // .catch(err => {
+            //     msgAlert({
+            //         heading: 'Error Getting Characters',
+            //         message: messages.getCharactersFailure,
+            //         variant: 'danger',
+            //     })
+            //     setError(true)
+            // })
     }, [])
 
     if (error) {
@@ -65,11 +66,11 @@ const ArtifactsIndex = (props) => {
         }
 
         const artifactCards = artifacts.map(artifact => (
-            <Card style={{ width: '30%', margin: 5}} key={ artifact.id }>
+            <Card style={{ width: '30%', margin: 5}} key={ artifact._id }>
                 <Card.Header>{ artifact.fullTitle }</Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <Link to={`/artifacts/${artifact.id}`}>View { artifact.name }</Link>
+                        <Link to={`/artifacts/${artifact._id}`}>View { artifact.name }</Link>
                     </Card.Text>
                 </Card.Body>
             </Card>
@@ -94,7 +95,7 @@ const ArtifactsIndex = (props) => {
                 <Card.Header>{ character.fullTitle }</Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <Link to={`/characters/${character.id}`}>View { character.name }</Link>
+                        <Link to={`/characters/${character._id}`}>View { character.name }</Link>
                     </Card.Text>
                 </Card.Body>
             </Card>
