@@ -37,6 +37,8 @@ const CreateArtifact = (props) => {
             // if (updatedId = null){
             //     updatedId = 0}
 
+            console.log('HI e.target.name: %s e.target.value: %s', e.target.name, e.target.value)
+
             if (e.target.type === 'number') {
                 updatedValue = parseInt(e.target.value)
             }
