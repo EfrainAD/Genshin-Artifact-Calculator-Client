@@ -25,16 +25,27 @@ const EditArtifactModal = (props) => {
                 updatedValue = parseInt(e.target.value)
             }
 
-            // this handles the checkbox, changing on to true etc
-            if (updatedName === "adoptable" && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === "adoptable" && !e.target.checked) {
-                updatedValue = false
+            let updatedArtifact = null
+            if (updatedName === 'substats.stat') {
+                updatedArtifact = {
+                    ['substats']: {
+                        stat: updatedValue
+                    }
+                }
+            } else if (updatedName === 'substats.amount') {
+                updatedArtifact = {
+                    ['substats']: {
+                        ...prevArtifact.substats,
+                        amount: updatedValue
+                    }
+                }
+            } else {
+                updatedArtifact = {
+                    ...prevArtifact.substats,
+                    [updatedName]: updatedValue
+                }
             }
-
-            const updatedArtifact = {
-                [updatedName]: updatedValue
-            }
+            
             return {
                 ...prevArtifact,
                 ...updatedArtifact
