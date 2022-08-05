@@ -2,13 +2,27 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 // READ => INDEX
-export const getAllArtifacts = () => {
-    return axios(`${apiUrl}/artifacts`)
+export const getAllArtifacts = (user) => {
+	// console.log(user)
+    return axios({
+	url: apiUrl + '/artifacts',
+	method: 'GET',
+	headers: {
+		Authorization: `Token token=${user.token}`,
+	}
+})
 }
 
 // READ => SHOW
-export const getOneArtifact = (id) => {
-    return axios(`${apiUrl}/artifacts/${id}`)
+export const getOneArtifact = (user, id) => {
+    return axios({
+		url: apiUrl + '/artifacts/' + id,
+		method: 'GET',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	})
+	//`${apiUrl}/artifacts/${id}`)
 }
 
 export const createArtifact = (user, newArtifact) => {
