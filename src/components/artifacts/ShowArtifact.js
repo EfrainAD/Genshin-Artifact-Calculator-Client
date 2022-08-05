@@ -38,9 +38,10 @@ const ShowArtifact = (props) => {
     console.log('the artifact in showArtifact', artifact)
     // console.log(`${artifact.owner} === ${user._id}`)
     // destructuring to get the id value from our route parameters
-
+    
     useEffect(() => {
-        getOneArtifact(id)
+        
+        getOneArtifact(user, id)
             .then(res => setArtifact(res.data.artifact))
             .catch(err => {                   
                 msgAlert({
