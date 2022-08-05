@@ -1,7 +1,7 @@
 
 // import ArtifactsIndex from './artifacts/ArtifactsIndex'
 import './style.css'
-=======
+
 import ArtifactsIndex from './artifacts/ArtifactsIndex'
 
 
