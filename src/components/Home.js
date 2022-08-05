@@ -14,6 +14,7 @@ const Home = (props) => {
 	//////////// Why user for not signed in but !user for signed in.
 	return (
 		<>
+		<div class="container">
 			<h2>See the Artifacts</h2>
 			{
 				user ?
@@ -21,7 +22,7 @@ const Home = (props) => {
 				:
 					<p>You need to sign in!</p>
 			}
-			
+		</div>	
 			
 		</>
 	)

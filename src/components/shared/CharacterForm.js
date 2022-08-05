@@ -19,9 +19,9 @@ import {
                      value={ character.name }
                      onChange={ handleChange }
                  />
-                 <Form.Label htmlFor="level">Level</Form.Label>
+                 <Form.Label htmlFor="level">Star Rating</Form.Label>
                  <Form.Control
-                     placeholder="What is it's level?"
+                     placeholder="What is their star rating?"
                      type="number"
                      name="level"
                      id="level"
