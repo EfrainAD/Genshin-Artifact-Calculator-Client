@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllArtifacts } from '../../api/artifacts'
+import { getAllCharacters } from '../../api/characters'
 import messages from '../shared/AutoDismissAlert/messages'
 
 // ArtifactsIndex should make a request to the api
@@ -18,7 +18,7 @@ const cardContainerStyle = {
 }
 
 const ArtifactsIndex = (props) => {
-    const [artifacts, setArtifacts] = useState(null)
+    const [characters, setCharacters] = useState(null)
     const [error, setError] = useState(false)
 
     const { user, msgAlert } = props
@@ -27,12 +27,12 @@ const ArtifactsIndex = (props) => {
 
     useEffect(() => {
         console.log(props)
-        getAllArtifacts(user)
-            .then(res => setArtifacts(res.data.artifacts))
+            getAllCharacters(user)
+            .then(res => setCharacters(res.data.characters))
             .catch(err => {
                 msgAlert({
-                    heading: 'Error Getting Artifacts',
-                    message: messages.getArtifactsFailure,
+                    heading: 'Error Getting Characters',
+                    message: messages.getCharactersFailure,
                     variant: 'danger',
                 })
                 setError(true)
@@ -45,19 +45,18 @@ const ArtifactsIndex = (props) => {
     if (error) {
         return <p>Error!</p>
     }
-    // If artifacts haven't been loaded yet, show a loading message
-    if (!artifacts) {
+    if (!characters) {
         return <LoadingScreen />
-    } else if (artifacts.length === 0) {
-        return <p>No artifacts yet. Better add some.</p>
+    } else if (characters.length === 0) {
+        return <p>No characters yet. Better add some.</p>
     }
 
-    const artifactCards = artifacts.map(artifact => (
-        <Card style={{ width: '30%', margin: 5}} key={ artifact._id }>
-            <Card.Header>{ artifact.fullTitle }</Card.Header>
+    const characterCards = characters.map(character => (
+        <Card style={{ width: '30%', margin: 5}} key={ character.id }>
+            <Card.Header>{ character.fullTitle }</Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <Link to={`/artifacts/${artifact._id}`}>{ artifact.name }</Link>
+                    <Link to={`/characters/${character._id}`}>{ character.name }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>
@@ -65,7 +64,7 @@ const ArtifactsIndex = (props) => {
 
     return (
         <div style={ cardContainerStyle }>
-            { artifactCards }
+            { characterCards }
         </div>
     )
 }
