@@ -1,11 +1,5 @@
-import { useState, useEffect } from 'react'
-import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
-
-import LoadingScreen from './shared/LoadingScreen'
-import { getAllArtifacts } from '../api/artifacts'
-// import { getAllCharacters } from '../api/characters'
-import messages from './shared/AutoDismissAlert/messages'
+import { useState } from 'react'
+import './style.css'
 
 import ArtifactsIndex from './artifacts/ArtifactsIndex'
 import CharactersIndex from './characters/CharactersIndex'
@@ -17,33 +11,37 @@ const Index = (props) => {
 
     console.log('Props in Index', props)
 
-////////////////
     if (filter === 'artifacts') {
         return (
             <>
-                <button 
-                    onClick={()=>{setFilter('artifacts'); 
-                    console.log('hi filter: ', filter)}}
+                <button className='button left-button is-active'
+                    onClick={()=>{setFilter('artifacts')}}
                     >My Artifacts
                 </button>
-                <button 
-                    onClick={()=>{setFilter('characters')}}>My Characters</button>
+                <button className='button right-button'
+                    onClick={()=>{setFilter('characters')}}
+                    >My Characters
+                </button>
                 
                 <ArtifactsIndex msgAlert={ msgAlert } user={ user } />
             </>
         )
-    } else { // artifact === 'Character
+    } else { // filter === 'Character
         return (
             <>
-                <button onClick={()=>{setFilter('artifacts')}}>My Artifacts</button>
-                <button onClick={()=>{setFilter('characters')}}>My Characters</button>
+                <button className='button left-button'
+                    onClick={()=>{setFilter('artifacts')}}
+                    >My Artifacts
+                </button>
+                <button className='button right-button is-active'
+                    onClick={()=>{setFilter('characters')}}
+                    >My Characters
+                </button>
                 
                 <CharactersIndex msgAlert={ msgAlert } user={ user } />
             </>
         )
     }
-
-    
 }
 
 export default Index

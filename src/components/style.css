@@ -5,9 +5,30 @@
 
 div {
     background-color: rgb(61, 61, 132);
+    text-align: center;
 }
 
-
+/* This styles the Indix.js taggle buttons for Artifact or Character */
+.button {
+    background-color: powderblue;
+    margin: 0;
+    border: none;
+}
+.button.left-button {
+    border-radius: 30px 0px 0px 30px;
+    padding-left: 15px;
+}
+.button.right-button {
+    border-radius: 0px 30px 30px 0px;
+    padding-right: 15px;
+}
+.button.button:hover {
+    background-color: hsl(177, 70%, 46%);
+} 
+.button.is-active {
+    background-color: blue;
+}
+/* END OF styles the Indix.js taggle buttons for Artifact or Character */
 
 h2 {
     color: azure;
