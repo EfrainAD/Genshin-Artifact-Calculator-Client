@@ -83,7 +83,7 @@ const ShowArtifact = (props) => {
     }
 
     const substats = artifact.substats.map(substat => (
-        <div>
+        <div className='substat'>
             <div>
                 <small>substats stat: { substat.stat }</small>
             </div>

@@ -8,6 +8,13 @@ div {
     text-align: center;
 }
 
+.substat {
+    border: hsl(177, 70%, 46%) solid 1px;
+    display: inline-block;
+    padding: 7px 20px;
+    margin: 2px 5px;
+}
+
 /* This styles the Indix.js taggle buttons for Artifact or Character */
 .button {
     background-color: powderblue;
