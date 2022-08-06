@@ -14,7 +14,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 const cardContainerStyle = {
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'center'
+    justifyContent: 'center-left'
 }
 
 const ArtifactsIndex = (props) => {
