@@ -2,16 +2,31 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 // READ => INDEX
-export const getAllCharacters = () => {
-    return axios(`${apiUrl}/characters`)
+export const getAllCharacters = (user) => {
+	// console.log(user)
+    return axios({
+	url: apiUrl + '/characters',
+	method: 'GET',
+	headers: {
+		Authorization: `Token token=${user.token}`,
+	}
+})
 }
 
 // READ => SHOW
-export const getOneCharacter = (id) => {
-    return axios(`${apiUrl}/characters/${id}`)
+export const getOneCharacter = (user, id) => {
+    return axios({
+		url: apiUrl + '/characters/' + id,
+		method: 'GET',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	})
+	//`${apiUrl}/characters/${id}`)
 }
 
 export const createCharacter = (user, newCharacter) => {
+	console.log('newCharacter', newCharacter)
 	return axios({
 		url: apiUrl + '/characters',
 		method: 'POST',
@@ -24,8 +39,9 @@ export const createCharacter = (user, newCharacter) => {
 
 export const updateCharacter = (user, updatedCharacter) => {
     console.log('this is updatedCharacter', updatedCharacter)
+
 	return axios({
-		url: `${apiUrl}/characters/${updatedCharacter.id}`,
+		url: `${apiUrl}/characters/${updatedCharacter._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
