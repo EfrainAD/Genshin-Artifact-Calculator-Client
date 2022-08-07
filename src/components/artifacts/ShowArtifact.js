@@ -83,12 +83,12 @@ const ShowArtifact = (props) => {
     }
 
     const substats = artifact.substats.map(substat => (
-        <div>
+        <div className='substat'>
             <div>
-                <small>substats stat: { substat.stat }</small>
+                <small>Stats: { substat.stat }</small>
             </div>
             <div>
-                <small>substats amount: { substat.amount }</small>
+                <small>Amount: { substat.amount }</small>
             </div>
         </div>
     ))
@@ -104,7 +104,9 @@ const ShowArtifact = (props) => {
                             <div><small>level: { artifact.level }</small></div>
                             <div><small>mainStat: { artifact.mainStat }</small></div>
                             <div><small>mainStatAmount: { artifact.mainStatAmount }</small></div>
-                            { substats }
+                            <div className='substats-grid'>
+                                { substats }
+                            </div>
                         </Card.Text>
                     </Card.Body>
                     {/* if condistion should be removed on CLEANUP */}
