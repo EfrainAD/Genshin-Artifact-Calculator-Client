@@ -85,8 +85,7 @@ const ArtifactForm = (props) => {
                 <h5>Substats</h5>
                 <div className='substats-grid'>
                     <div className="substat">
-                        <Form.Label htmlFor="substatsStat">The 1 substat
-                        s stats</Form.Label>
+                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
                         <Form.Control 
                             placeholder="What is it's sub stats?"
                             type="string"
@@ -95,7 +94,7 @@ const ArtifactForm = (props) => {
                             value={ artifact.substats[0].stat }
                             onChange={ handleChange }
                         />
-                        <Form.Label htmlFor="substatsAmount">The 1 subStats amount</Form.Label>
+                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
                         <Form.Control
                             placeholder="What is it's main stat amount?"
                             type="number"
@@ -106,7 +105,7 @@ const ArtifactForm = (props) => {
                         />
                     </div>
                     <div className="substat">
-                        <Form.Label htmlFor="substatsStat">The 2 substats stats</Form.Label>
+                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
                         <Form.Control
                             placeholder="What is it's sub stats?"
                             type="string"
@@ -115,7 +114,7 @@ const ArtifactForm = (props) => {
                             value={ artifact.substats[1].stat }
                             onChange={ handleChange }
                         />
-                        <Form.Label htmlFor="substatsAmount">The 2 subStats amount</Form.Label>
+                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
                         <Form.Control
                             placeholder="What is it's main stat amount?"
                             type="number"
@@ -126,7 +125,7 @@ const ArtifactForm = (props) => {
                         />
                     </div>
                     <div className="substat">
-                        <Form.Label htmlFor="substatsStat">The 3 substat stats</Form.Label>
+                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
                         <Form.Control
                             placeholder="What is it's sub stats?"
                             type="string"
@@ -135,7 +134,7 @@ const ArtifactForm = (props) => {
                             value={ artifact.substats[2].stat }
                             onChange={ handleChange }
                         />
-                        <Form.Label htmlFor="substatsAmount">The 3 subStats amount</Form.Label>
+                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
                         <Form.Control
                             placeholder="What is it's main stat amount?"
                             type="number"
@@ -146,7 +145,7 @@ const ArtifactForm = (props) => {
                         />
                     </div>
                     <div className="substat">
-                        <Form.Label htmlFor="substatsStat">The 4 substats stats</Form.Label>
+                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
                         <Form.Control
                             placeholder="What is it's sub stats?"
                             type="string"
@@ -155,7 +154,7 @@ const ArtifactForm = (props) => {
                             value={ artifact.substats[3].stat }
                             onChange={ handleChange }
                         />
-                        <Form.Label htmlFor="substatsAmount">The 4 subStats amount</Form.Label>
+                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
                         <Form.Control
                             placeholder="What is it's main stat amount?"
                             type="number"
