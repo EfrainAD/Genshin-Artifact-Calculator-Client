@@ -40,7 +40,7 @@ const CreateArtifact = (props) => {
             console.log('HI e.target.name: %s e.target.value: %s', e.target.name, e.target.value)
 
             if (e.target.type === 'number') {
-                updatedValue = parseInt(e.target.value)
+                updatedValue = parseFloat(e.target.value)
             }
 
             let newArr = [...artifact.substats]
