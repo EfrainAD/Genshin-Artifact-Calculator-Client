@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { createArtifactSuccess, createArtifactFailure } from '../shared/AutoDismissAlert/messages'
 import ArtifactForm from '../shared/ArtifactForm'
 
+import '../../components/style.css'
+
 const CreateArtifact = (props) => {
     console.log('these are the props in createArtifact\n', props)
     

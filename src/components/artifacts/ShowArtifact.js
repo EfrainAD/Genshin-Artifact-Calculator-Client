@@ -11,6 +11,20 @@ import { getOneArtifact, updateArtifact, removeArtifact } from '../../api/artifa
 import EditArtifactModal from './EditArtifactModal'
 import ReactTooltip from 'react-tooltip';
 
+import './artifact.css'
+
+// We need to get the artifact's id from the parameters
+// Then we need to make a request to the api
+// Then we need to display the results in this component
+
+// CLEANUP
+// we'll used a style object to lay out the toy cards I might want this. So I am keep it here.
+// const cardContainerLayout = {
+//     display: 'flex',
+//     justifyContent: 'center',
+//     flexFlow: 'row wrap'
+// }
+
 // Get artifact from the the api and display them.
 
 const ShowArtifact = (props) => {
@@ -22,6 +36,21 @@ const ShowArtifact = (props) => {
 
     // used to update the artifact.
     const { id } = useParams()
+    const navigate = useNavigate()
+    // useNavigate returns a function
+    // we can call that function to redirect the user wherever we want to
+
+    const setBgCondition = (cond) => {
+        if (cond === 'new') {
+            return({width: '18rem', backgroundColor:'#b5ead7'})
+        } else if (cond === 'used') {
+            return({width: '18rem', backgroundColor:'#ffdac1'})
+        } else {
+            return({width: '18rem', backgroundColor:'#ff9aa2'})
+        }
+    }
+
+    const { user, msgAlert } = props
     const [updated, setUpdated] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     
