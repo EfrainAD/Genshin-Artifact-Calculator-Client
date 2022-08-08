@@ -63,7 +63,7 @@ const ChangeSubstatPrefs = (props) => {
       return;
     }
 
-    // otherwise, let's give it a whirl!
+    // otherwise, submit the form and give feedback to the user
     updateSubstatPrefs(user, subPrefs)
       .then(() => msgAlert({
         heading: "Success!",
@@ -105,31 +105,5 @@ const ChangeSubstatPrefs = (props) => {
 
   return subPrefsForm;
 }
-
-/*
-
-    // We'll add a handleSubmit here that makes an api request, then handles the response
-    const handleSubmit = (e) => {
-        createArtifact(user, artifact)
-            // if we're successful, navigate to the show page for the new artifact
-            .then(res => { navigate(`/artifacts/${res.data.artifact._id}`)})
-            // send a success message to the user
-            .then(() => {
-                msgAlert({
-                    heading: 'Oh Yeah!',
-                    message: createArtifactSuccess,
-                    variant: 'success'
-                })
-            })
-            // if there is an error, tell the user about it
-            .catch(() => 
-                msgAlert({
-                    heading: 'Oh No!',
-                    message: createArtifactFailure,
-                    variant: 'danger'
-                })
-            )
-    }
-*/
 
 export default ChangeSubstatPrefs;
