@@ -81,7 +81,7 @@ const CreateArtifact = (props) => {
 
         createArtifact(user, artifact)
             // if we're successful, navigate to the show page for the new artifact
-            .then(res => { navigate(`/artifacts/${res.data.artifact.id}`)})
+            .then(res => { navigate(`/artifacts/${res.data.artifact._id}`)})
             // send a success message to the user
             .then(() => {
                 msgAlert({
