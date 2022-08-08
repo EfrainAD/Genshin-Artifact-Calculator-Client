@@ -15,6 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import ShowArtifact from './components/artifacts/ShowArtifact'
 import CreateArtifact from './components/artifacts/CreateArtifact'
 import CreateCharacter from './components/characters/CreateCharacter'
+import ChangeSubstatPrefs from './components/user/changeSubstatPrefs';
 
 import './App.css'
 
@@ -94,6 +95,14 @@ const App = () => {
 						<RequireAuth user={ user }>
 							<CreateCharacter msgAlert={msgAlert} user={user}/>
 						</RequireAuth>  
+					}
+				/>
+				<Route
+					path="/change-substat-prefs"
+					element={
+						<RequireAuth user={ user }>
+							<ChangeSubstatPrefs msgAlert={msgAlert} user={user} />
+						</RequireAuth>
 					}
 				/>
 			</Routes>
