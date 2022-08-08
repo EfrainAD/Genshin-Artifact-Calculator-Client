@@ -1,61 +1,47 @@
 import { useState, useEffect } from 'react'
-
 import { useParams, useNavigate } from 'react-router-dom'
-// useParams will allow us to see our parameters
-// useNavigate will allow us to navigate to a specific page
 
+// Display inports
 import { Container, Card, Button } from 'react-bootstrap'
-
 import LoadingScreen from '../shared/LoadingScreen'
-import { getOneArtifact, updateArtifact, removeArtifact } from '../../api/artifacts'
+// components
 import messages from '../shared/AutoDismissAlert/messages'
+// API stuff
+import { getOneArtifact, updateArtifact, removeArtifact } from '../../api/artifacts'
 import EditArtifactModal from './EditArtifactModal'
 
-// We need to get the artifact's id from the parameters
-// Then we need to make a request to the api
-// Then we need to display the results in this component
-
-// CLEANUP
-// we'll used a style object to lay out the toy cards I might want this. So I am keep it here.
-// const cardContainerLayout = {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     flexFlow: 'row wrap'
-// }
+// Get artifact from the the api and display them.
 
 const ShowArtifact = (props) => {
-    const [artifact, setArtifact] = useState(null)
-    const [editModalShow, setEditModalShow] = useState(false)
-    const [updated, setUpdated] = useState(false)
-
-    const { id } = useParams()
-    const navigate = useNavigate()
-    // useNavigate returns a function
-    // we can call that function to redirect the user wherever we want to
-
     const { user, msgAlert } = props
+    const navigate = useNavigate()
+    
+    // place holder the the artifact and the artifact's id, so the API can fetch it.
+    const [artifact, setArtifact] = useState(null)
+
+    // used to update the artifact.
+    const { id } = useParams()
+    const [updated, setUpdated] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
+    
     console.log('user in props', user)
     console.log('the artifact in showArtifact', artifact)
-    // console.log(`${artifact.owner} === ${user._id}`)
-    // destructuring to get the id value from our route parameters
     
+    // Get the artifact from the API
     useEffect(() => {
-        
         getOneArtifact(user, id)
             .then(res => setArtifact(res.data.artifact))
-            .catch(err => {                   
+            .catch(err => {
                 msgAlert({
                     heading: 'Error getting artifact',
                     message: messages.getArtifactsFailure,
                     variant: 'danger'
                 })
                 navigate('/')
-                //navigate back to the home page if there's an error fetching
             })
     }, [updated])
 
-    // here we'll declare a function that runs which will remove the artifact
-    // this function's promise chain should send a message, and then go somewhere
+    // Delete the artifact from API if user click the remove button
     const removeTheArtifact = () => {
         removeArtifact(user, id)
             // on success send a success message
@@ -77,11 +63,13 @@ const ShowArtifact = (props) => {
                 })
             })
     }
-
+    
+    // If the artifact hasn't been loaded yet, show a loading message
     if (!artifact) {
         return <LoadingScreen />
     }
 
+    // Displays the substats array
     const substats = artifact.substats.map(substat => (
         <div className='substat'>
             <div>
@@ -92,7 +80,8 @@ const ShowArtifact = (props) => {
             </div>
         </div>
     ))
-
+    
+    // display artifact info, and a button to edit and delete
     return (
         <>
             <Container className="fluid">
@@ -109,11 +98,9 @@ const ShowArtifact = (props) => {
                             </div>
                         </Card.Text>
                     </Card.Body>
-                    {/* if condistion should be removed on CLEANUP */}
+                    {/* Buttons that the user can click. */}
                     <Card.Footer>
                         {
-                            artifact.owner && user && artifact.owner === user._id
-                            ?
                             <>
                                 <Button onClick={() => setEditModalShow(true)} 
                                     className="m-2" 
@@ -128,12 +115,11 @@ const ShowArtifact = (props) => {
                                     Remove {artifact.name}
                                 </Button>
                             </>
-                            :
-                            null
                         }
                     </Card.Footer>
                 </Card>
             </Container>
+            {/* What shows up when the user clicked "Edit Artifact" */}
             <EditArtifactModal 
                 user={user}
                 artifact={artifact} 

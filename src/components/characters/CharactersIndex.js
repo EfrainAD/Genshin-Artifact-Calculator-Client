@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
+
+// Display stuff
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
-
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllCharacters } from '../../api/characters'
 import messages from '../shared/AutoDismissAlert/messages'
 
-// ArtifactsIndex should make a request to the api
-// To get all artifacts
-// Then display them when it gets them
+// Components
+import { getAllCharacters } from '../../api/characters'
+
+// Get all user's artifacts display them.
 
 // style for our card container
 const cardContainerStyle = {
@@ -18,13 +19,16 @@ const cardContainerStyle = {
 }
 
 const ArtifactsIndex = (props) => {
-    const [characters, setCharacters] = useState(null)
-    const [error, setError] = useState(false)
-
-    const { user, msgAlert } = props
-
     console.log('Props in ArtifactsIndex', props)
 
+    // User and messages
+    const { user, msgAlert } = props
+    const [error, setError] = useState(false)
+    
+    // Placeholder for all the user's characters from the DB.
+    const [characters, setCharacters] = useState(null)
+
+    // Get all the characters from the DB
     useEffect(() => {
         console.log(props)
             getAllCharacters(user)
@@ -42,15 +46,19 @@ const ArtifactsIndex = (props) => {
     if (!user) {
         return <p>You need to sign in!</p>
     }
+     // If there is an error fetching from the DB
     if (error) {
         return <p>Error!</p>
     }
+    // If characters haven't been loaded yet, show a loading message
     if (!characters) {
         return <LoadingScreen />
+    // If the user's characters have been loaded, but they don't have any, so there nothing to display.
     } else if (characters.length === 0) {
         return <p>No characters yet. Better add some.</p>
     }
 
+    // Puts each character in a little card display.
     const characterCards = characters.map(character => (
         <Card style={{ width: '30%', margin: 5}} key={ character.id }>
             <Card.Header>{ character.fullTitle }</Card.Header>
@@ -61,7 +69,8 @@ const ArtifactsIndex = (props) => {
             </Card.Body>
         </Card>
     ))
-
+    
+    // Display's each character in it's little card display.
     return (
         <div style={ cardContainerStyle }>
             { characterCards }

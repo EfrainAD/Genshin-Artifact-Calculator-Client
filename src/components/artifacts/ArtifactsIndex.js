@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
+
+// Display stuff
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
-
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllArtifacts } from '../../api/artifacts'
 import messages from '../shared/AutoDismissAlert/messages'
 
-// ArtifactsIndex should make a request to the api
-// To get all artifacts
-// Then display them when it gets them
+// Componets
+import { getAllArtifacts } from '../../api/artifacts'
+
+// Get all user's artifacts display them.
 
 // style for our card container
 const cardContainerStyle = {
@@ -18,13 +19,16 @@ const cardContainerStyle = {
 }
 
 const ArtifactsIndex = (props) => {
-    const [artifacts, setArtifacts] = useState(null)
+    console.log('Props in ArtifactsIndex', props)
+    
+    // User and messages
+    const { user, msgAlert } = props
     const [error, setError] = useState(false)
 
-    const { user, msgAlert } = props
+    // Placeholder for all the user's artifacts from the DB.
+    const [artifacts, setArtifacts] = useState(null)
 
-    console.log('Props in ArtifactsIndex', props)
-
+    // Get all the artifacts from the DB
     useEffect(() => {
         console.log(props)
         getAllArtifacts(user)
@@ -39,19 +43,23 @@ const ArtifactsIndex = (props) => {
             })
     }, [])
 
+
     if (!user) {
         return <p>You need to sign in!</p>
     }
+    // If there is an error fetching from the DB
     if (error) {
         return <p>Error!</p>
     }
     // If artifacts haven't been loaded yet, show a loading message
     if (!artifacts) {
         return <LoadingScreen />
+     // If the user's artifacts=s have been loaded, but they don't have any, so there nothing to display.
     } else if (artifacts.length === 0) {
         return <p>No artifacts yet. Better add some.</p>
     }
 
+    // Puts each artifact in a little card display.
     const artifactCards = artifacts.map(artifact => (
         <Card style={{ width: '30%', margin: 5}} key={ artifact._id }>
             <Card.Header>{ artifact.fullTitle }</Card.Header>
@@ -63,6 +71,7 @@ const ArtifactsIndex = (props) => {
         </Card>
     ))
 
+    // Display's each artifact in it's little card display.
     return (
         <div style={ cardContainerStyle }>
             { artifactCards }
