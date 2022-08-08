@@ -36,7 +36,6 @@ const ShowArtifact = (props) => {
 
     // used to update the artifact.
     const { id } = useParams()
-    const navigate = useNavigate()
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
@@ -50,7 +49,6 @@ const ShowArtifact = (props) => {
         }
     }
 
-    const { user, msgAlert } = props
     const [updated, setUpdated] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     
