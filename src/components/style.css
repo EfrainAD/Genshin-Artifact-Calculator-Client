@@ -4,7 +4,7 @@
 } */
 
 div {
-    background-color: rgb(61, 61, 132);
+    background-color: rgb(118, 118, 189);
     text-align: center;
 }
 
@@ -12,7 +12,7 @@ div {
     display: grid;
     gap: 1em;
     grid-template-columns: repeat(2, 1fr);
-    /* background-color: gray; */
+    background-color: gray;
     margin-top: 15px;
 }
 

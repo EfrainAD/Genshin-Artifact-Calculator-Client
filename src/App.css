@@ -1,3 +1,7 @@
 body{
     background-image: url(../src/Img/paimon___genshin_impact_by_medyoisla_de9lsvc-fullview.jpeg);
 }
+div{
+    background-image: url(../src/Img/bgi.jpeg);
+    text-align: center;
+}

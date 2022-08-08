@@ -11,6 +11,8 @@ import { getOneArtifact, updateArtifact, removeArtifact } from '../../api/artifa
 import messages from '../shared/AutoDismissAlert/messages'
 import EditArtifactModal from './EditArtifactModal'
 
+import './artifact.css'
+
 // We need to get the artifact's id from the parameters
 // Then we need to make a request to the api
 // Then we need to display the results in this component
@@ -32,6 +34,16 @@ const ShowArtifact = (props) => {
     const navigate = useNavigate()
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
+
+    const setBgCondition = (cond) => {
+        if (cond === 'new') {
+            return({width: '18rem', backgroundColor:'#b5ead7'})
+        } else if (cond === 'used') {
+            return({width: '18rem', backgroundColor:'#ffdac1'})
+        } else {
+            return({width: '18rem', backgroundColor:'#ff9aa2'})
+        }
+    }
 
     const { user, msgAlert } = props
     console.log('user in props', user)
