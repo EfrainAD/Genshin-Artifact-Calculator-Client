@@ -3,30 +3,30 @@ import { Form, Button, Container } from 'react-bootstrap'
 const ArtifactForm = (props) => {
     const { artifact, handleChange, heading, handleSubmit } = props
     
-    // let subStatsForm = [0,1,2,3]
-    // subStatsForm = subStatsForm.map((subStatForm, index) =>(
-    //     <>
-    //         <Form.Label htmlFor="substatsStat">The {index + 1} substat
-    //             s stats</Form.Label>
-    //             <Form.Control
-    //                 placeholder="What is it's sub stats?"
-    //                 type="string"
-    //                 name="substats.stat"
-    //                 id={ index }
-    //                 value={ artifact.substatsStat }
-    //                 onChange={ handleChange }
-    //             />
-    //             <Form.Label htmlFor="substatsAmount">The {index + 1} subStats amount</Form.Label>
-    //             <Form.Control
-    //                 placeholder="What is it's main stat amount?"
-    //                 type="number"
-    //                 name="substats.amount"
-    //                 id={ index }
-    //                 value={ artifact.substatsAmount }
-    //                 onChange={ handleChange }
-    //             />
-    //     </>
-    // ))
+    let subStatsForm = [0,1,2,3]
+    subStatsForm = subStatsForm.map((subStatForm, index) =>(
+        <>
+            <Form.Label htmlFor="substatsStat">The {index + 1} substat
+                s stats</Form.Label>
+                <Form.Control
+                    placeholder="What is it's sub stats?"
+                    type="string"
+                    name="substats.stat"
+                    id={ index }
+                    value={ artifact.substatsStat }
+                    onChange={ handleChange }
+                />
+                <Form.Label htmlFor="substatsAmount">The {index + 1} subStats amount</Form.Label>
+                <Form.Control
+                    placeholder="What is it's main stat amount?"
+                    type="number"
+                    name="substats.amount"
+                    id={ index }
+                    value={ artifact.substatsAmount }
+                    onChange={ handleChange }
+                />
+        </>
+    ))
     // console.log('HHHHHHIIIIII ', subStatsForm)
 
     return (
@@ -84,6 +84,7 @@ const ArtifactForm = (props) => {
                 
                 <h5>Substats</h5>
                 <div className='substats-grid'>
+                {subStatsForm}
                     <div className="substat">
                         <Form.Label htmlFor="substatsStat">Stats</Form.Label>
                         <Form.Control 

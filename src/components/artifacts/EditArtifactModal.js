@@ -1,27 +1,30 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
-import ArtifactForm from '../shared/ArtifactForm'
 import { updateArtifactSuccess, updateArtifactFailure } from '../shared/AutoDismissAlert/messages'
+
+// componets 
+import ArtifactForm from '../shared/ArtifactForm'
 
 const EditArtifactModal = (props) => {
     const { 
-        user, show, handleClose, 
-        updateArtifact, msgAlert, triggerRefresh
+        user, show, handleClose, updateArtifact, msgAlert, triggerRefresh
     } = props
 
+    //PlaceHolder for the Artifact going to be edited, so I'll have all the part that are not been changed.
     const [artifact, setArtifact] = useState(props.artifact)
 
     console.log('artifact in edit modal', artifact)
 
     const handleChange = (e) => {
         setArtifact(prevArtifact => {
+            // the key/value pair
             const updatedName = e.target.name
             let updatedValue = e.target.value
             let updatedId = e.target.id
-            // if (updatedId = null){
-            //     updatedId = 0}
 
-            console.log('HI e.target.name: %s e.target.value: %s', e.target.name, e.target.value)
+            // console.logs
+            console.log('this is the input type', e.target.type)
+            console.log('%s: %s', e.target.name, e.target.value)
 
             if (e.target.type === 'number') {
                 updatedValue = parseInt(e.target.value)
@@ -30,6 +33,8 @@ const EditArtifactModal = (props) => {
             let newArr = [...artifact.substats]
             let updatedArtifact = null
             
+            //Checking if this is an object fuild that is inside the array substats
+            // First key/value pair in the array is stat.
             if (updatedName === 'substats.stat') {
                 newArr[updatedId] = {
                     ...prevArtifact.substats[updatedId],
@@ -37,14 +42,14 @@ const EditArtifactModal = (props) => {
                 }
                 updatedArtifact = {substats: [...newArr]}
             } else if (updatedName === 'substats.amount') {
-                console.log('EEEEEEEEEEe.target.id/updatedId: ', updatedId)
+                // Second key/value pair in the array is amount
                 newArr[updatedId] = {
                     ...prevArtifact.substats[updatedId],
                     amount: updatedValue
                 }
                 updatedArtifact = {substats: [...newArr]}
-                // console.log('this updatedArtifact: ', updatedArtifact)
             } else {
+                // If not in the array just create the key/value pair in an object
                 updatedArtifact = {
                     ...prevArtifact.substats,
                     [updatedName]: updatedValue
@@ -59,7 +64,6 @@ const EditArtifactModal = (props) => {
     }
 
     const handleSubmit = (e) => {
-        // e equals the event
         e.preventDefault()
         updateArtifact(user, artifact)
             // if we're successful in the modal, we want the modal to close
@@ -73,9 +77,8 @@ const EditArtifactModal = (props) => {
                 })
             })
             // if everything is successful, we need to trigger our refresh for the show page
-            // this is that setUpdated function in showArtifact component
             // updated is in ShowArtifact's useEffect's dependency array
-            // changes to the updated boolean cause ShowArtifact's useEffect to run again.
+            // changes to the updated boolean cause ShowArtifact's useEffect to run argain.
             .then(() => triggerRefresh())
             // if there is an error, tell the user about it
             .catch(() => 
@@ -87,6 +90,7 @@ const EditArtifactModal = (props) => {
             )
     }
 
+    // Displays the edit pop up when the user had clicked on it.
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton />

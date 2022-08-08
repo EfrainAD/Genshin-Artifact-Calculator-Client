@@ -1,43 +1,34 @@
 import { useState, useEffect } from 'react'
-
 import { useParams, useNavigate } from 'react-router-dom'
-// useParams will allow us to see our parameters
-// useNavigate will allow us to navigate to a specific page
 
+// Display inports
 import { Container, Card, Button } from 'react-bootstrap'
-
 import LoadingScreen from '../shared/LoadingScreen'
-import { getOneCharacter, updateCharacter, removeCharacter } from '../../api/characters'
 import messages from '../shared/AutoDismissAlert/messages'
+
+// API stuff
+import { getOneCharacter, updateCharacter, removeCharacter } from '../../api/characters'
 import EditCharacterModal from './EditCharacterModal'
 
-// We need to get the Character's id from the parameters
-// Then we need to make a request to the api
-// Then we need to display the results in this component
-
-// CLEANUP
-// we'll used a style object to lay out the toy cards I might want this. So I am keep it here.
-// const cardContainerLayout = {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     flexFlow: 'row wrap'
-// }
+// Get artifact from the the api and display them.
 
 const ShowCharacter = (props) => {
-    const [character, setCharacter] = useState(null)
-    const [editModalShow, setEditModalShow] = useState(false)
-    const [updated, setUpdated] = useState(false)
-
-    const { id } = useParams()
-    const navigate = useNavigate()
-    // useNavigate returns a function
-    // we can call that function to redirect the user wherever we want to
-
     const { user, msgAlert } = props
+    const navigate = useNavigate()
+
+    // place holder the the character and the character's id, so the API can fetch it.
+    const [character, setCharacter] = useState(null)
+    
+    // used to update the character
+    const { id } = useParams()
+    const [updated, setUpdated] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
+
+
     console.log('user in props', user)
     console.log('the character in showCharacter', character)
-    // destructuring to get the id value from our route parameters
 
+    // Get the artifact from the API
     useEffect(() => {
         getOneCharacter(id)
             .then(res => setCharacter(res.data.character))
@@ -52,8 +43,7 @@ const ShowCharacter = (props) => {
             })
     }, [updated])
 
-    // here we'll declare a function that runs which will remove the character
-    // this function's promise chain should send a message, and then go somewhere
+    // Delete the character from API if user click the remove button
     const removeTheCharacter = () => {
         removeCharacter(user, character.id)
             // on success send a success message
@@ -75,7 +65,8 @@ const ShowCharacter = (props) => {
                 })
             })
     }
-
+    
+    // If the artifact hasn't been loaded yet, show a loading message
     if (!character) {
         return <LoadingScreen />
     }

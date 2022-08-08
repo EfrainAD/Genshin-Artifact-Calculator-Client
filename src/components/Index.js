@@ -6,11 +6,11 @@ import CharactersIndex from './characters/CharactersIndex'
 import IndexButtons from './IndexButtons'
 
 const Index = (props) => {
+    console.log('Props in Index', props)
     
+    // filter is used to toggle between display the list of artifacts and characters.
     const [filter, setFilter] = useState('artifacts') // or Characters
     const { user, msgAlert } = props
-
-    console.log('Props in Index', props)
 
     return (
         <>
