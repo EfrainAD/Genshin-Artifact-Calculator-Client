@@ -15,7 +15,7 @@ const messages = {
 	updateArtifactSuccess: 'Artifact updated Successfully!',
 	updateArtifactFailure: 'Couldnt update artifact, please try again.',
 	removeArtifactSuccess: 'Artifact has been destroyed!',
-	removeArtifactFailure: 'Couldnt remove artifact, please try again.'
+	removeArtifactFailure: 'Couldnt remove artifact, please try again.',
 	
 	// Character messages
 	getCharactersFailure: 'Error fetching characters.',
