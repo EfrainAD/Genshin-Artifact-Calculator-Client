@@ -39,11 +39,15 @@ const ShowArtifact = (props) => {
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
-    const setBgCondition = (cond) => {
-        if (cond === 'new') {
+    const setBgCondition = (slot) => {
+        if (slot === 'Flower') {
             return({width: '18rem', backgroundColor:'#b5ead7'})
-        } else if (cond === 'used') {
+        } else if (slot === 'Feather') {
             return({width: '18rem', backgroundColor:'#ffdac1'})
+        } else if (slot === 'Sands'){
+            return({width: '18rem', backgroundColor:'#ff9aa2'})
+        } else if (slot === 'Goblet'){
+            return({width: '18rem', backgroundColor:'#ff9aa2'})
         } else {
             return({width: '18rem', backgroundColor:'#ff9aa2'})
         }
