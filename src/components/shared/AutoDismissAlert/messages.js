@@ -1,4 +1,5 @@
 const messages = {
+	// User auth messages
 	signUpSuccess: "Successfully registered! You've been signed in as well.",
 	signUpFailure:"Registration failed. Email may be taken, or passwords don't match.",
 	signInSuccess: 'Welcome!',
@@ -6,6 +7,8 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
+
+	// Artifact messages
 	getArtifactsFailure: 'Error fetching artifacts.',
 	createArtifactSuccess: 'Artifact created Successfully!',
 	createArtifactFailure: 'Something went wrong, please try again.',
@@ -29,7 +32,15 @@ const messages = {
 	The percentage answers the question, "Among all artifacts with the same substats and roll distribution<br />
 	as mine, what portion of them are my rolls equivalent or numerically superior to?"`,
 	powerRatingTooltip: `This rating directly gives your artifact's numerical strength as a percentage of the numerical<br />
-	strength of the hypothetical best artifact (with the same main stat as yours).`
+	
+	// Character messages
+	getCharactersFailure: 'Error fetching characters.',
+	createCharacterSuccess: 'Character created Successfully!',
+	createCharacterFailure: 'Something went wrong, please try again.',
+	updateCharacterSuccess: 'Character updated Successfully!',
+	updateCharacterFailure: 'Couldnt update character, please try again.',
+	removeCharacterSuccess: 'Character has been destroyed!',
+	removeCharacterFailure: 'Couldnt remove character, please try again.'
 }
 
 module.exports = messages
