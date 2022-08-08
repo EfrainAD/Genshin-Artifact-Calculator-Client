@@ -34,6 +34,9 @@ const messages = {
 	powerRatingTooltip: `This rating directly gives your artifact's numerical strength as a percentage of the numerical<br />
 	strength of the hypothetical best artifact (with the same main stat as yours).`,
 
+	getUserPrefsFailure: "Something went wrong and your substat importance preferences couldn't be retrieved.",
+	updateUserPrefsFailure: "Something went wrong and your substat importance preferences were NOT updated.",
+	updateUserPrefsSuccess: "Your preferences have been saved and your artifact ratings have been updated accordingly.",
 	insufficientImportantSubs: "You must select at least one useful substat.",
 	
 	// Character messages
