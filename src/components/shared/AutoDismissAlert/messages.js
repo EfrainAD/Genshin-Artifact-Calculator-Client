@@ -32,6 +32,7 @@ const messages = {
 	The percentage answers the question, "Among all artifacts with the same substats and roll distribution<br />
 	as mine, what portion of them are my rolls equivalent or numerically superior to?"`,
 	powerRatingTooltip: `This rating directly gives your artifact's numerical strength as a percentage of the numerical<br />
+	strength of the hypothetical best artifact (with the same main stat as yours).`,
 	
 	// Character messages
 	getCharactersFailure: 'Error fetching characters.',
