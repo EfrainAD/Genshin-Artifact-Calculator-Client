@@ -10,6 +10,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneArtifact, updateArtifact, removeArtifact } from '../../api/artifacts'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditArtifactModal from './EditArtifactModal'
+import ReactTooltip from 'react-tooltip';
 
 // We need to get the artifact's id from the parameters
 // Then we need to make a request to the api
@@ -93,11 +94,30 @@ const ShowArtifact = (props) => {
         </div>
     ))
 
+    let ratingArea;
+    if (!artifact.ratings) {
+        ratingArea = <p>{ messages["noRatingFound"] }</p>
+    }
+    else if (artifact.ratings.error) {
+        ratingArea = <p>{ messages[artifact.ratings.messageName] }</p>
+    } else {
+        const ratingList = artifact.ratings.map((rating, i) => {
+            return (<li key={i}>
+                <ReactTooltip id={"tooltip-" + i} html="true">
+                    { messages[rating.tooltipId] }
+                </ReactTooltip>
+                <a data-tip data-for={"tooltip-" + i} style={{textDecorationStyle: "dotted", textDecorationLine: "underline"}}>{ rating.readableName }</a>: { rating.value }
+            </li>);
+        })
+
+        ratingArea = <ul style={{listStyle: "none", margin: 0, padding: 0}}>{ ratingList }</ul>
+    }
+
     return (
         <>
             <Container className="fluid">
                 <Card>
-                    <Card.Header>{ artifact.name }</Card.Header>
+                    <Card.Header><h2 style={{color: 'rgb(61, 61, 132)'}}>{ artifact.name }</h2></Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <div><small>slot: { artifact.slot }</small></div>
@@ -106,6 +126,10 @@ const ShowArtifact = (props) => {
                             <div><small>mainStatAmount: { artifact.mainStatAmount }</small></div>
                             <div className='substats-grid'>
                                 { substats }
+                            </div>
+                            <div style={{marginTop: "25px", marginBottom: "15px"}}>
+                                <h4>Artifact Ratings</h4>
+                                { ratingArea }
                             </div>
                         </Card.Text>
                     </Card.Body>
