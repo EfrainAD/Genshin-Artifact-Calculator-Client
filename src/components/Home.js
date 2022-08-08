@@ -7,12 +7,10 @@ import Index from './Index'
 
 
 const Home = (props) => {
-	// const { msgAlert, user } = props
 	console.log('props in home', props)
 
 	const { user, msgAlert } = props
 
-	//////////// Why user for not signed in but !user for signed in.
 	return (
 		<>
 		<div class="container">
@@ -20,7 +18,6 @@ const Home = (props) => {
 			{
 				user ?
 					<Index msgAlert={ msgAlert } user={ user } />
-					// <ArtifactsIndex msgAlert={ msgAlert } user={ user } />
 				:
 					<p>You need to sign in!</p>
 			}

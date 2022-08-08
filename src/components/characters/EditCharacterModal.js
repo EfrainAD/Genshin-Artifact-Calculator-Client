@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
+import { updateCharacterSuccess, updateCharacterFailure } from '../shared/AutoDismissAlert/messages'
+
+// componets
 import CharacterForm from '../shared/CharacterForm'
-// NEEDTO
-// import { updateArtifactSuccess, updateArtifactFailure } from '../shared/AutoDismissAlert/messages'
 
 const EditCharacterModal = (props) => {
     const { 
@@ -10,29 +11,26 @@ const EditCharacterModal = (props) => {
         updateCharacter, msgAlert, triggerRefresh
     } = props
 
+    //PlaceHolder for the Character going to be edited, so I'll have all the part that are not been changed.
     const [character, setCharacter] = useState(props.character)
 
     console.log('character in edit modal', character)
 
     const handleChange = (e) => {
         setCharacter(prevCharacter => {
-            let updatedValue = e.target.value
+            // the key/value pair
             const updatedName = e.target.name
+            let updatedValue = e.target.value
 
+            // console.logs
             console.log('this is the input type', e.target.type)
+            console.log('%s: %s', e.target.name, e.target.value)
 
             if (e.target.type === 'number') {
-                // this is looking at the input type, and changing it from the default, which is a string, into an actual number
                 updatedValue = parseInt(e.target.value)
             }
 
-            // this handles the checkbox, changing on to true etc
-            if (updatedName === "adoptable" && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === "adoptable" && !e.target.checked) {
-                updatedValue = false
-            }
-
+            // Create the key/value pair in an object
             const updatedCharacter = {
                 [updatedName]: updatedValue
             }
@@ -48,7 +46,7 @@ const EditCharacterModal = (props) => {
         e.preventDefault()
 
         updateCharacter(user, character)
-            // if we're successful in the modal, we want the modal to close
+            // if successful cose the modal.
             .then(() => handleClose())
             // send a success message to the user
             .then(() => {
