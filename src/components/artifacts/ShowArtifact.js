@@ -122,7 +122,7 @@ const ShowArtifact = (props) => {
     } else {
         const ratingList = artifact.ratings.map((rating, i) => {
             return (<li key={i}>
-                <ReactTooltip id={"tooltip-" + i} html="true">
+                <ReactTooltip effect="solid" id={"tooltip-" + i} html="true">
                     { messages[rating.tooltipId] }
                 </ReactTooltip>
                 <a data-tip data-for={"tooltip-" + i} style={{textDecorationStyle: "dotted", textDecorationLine: "underline"}}>{ rating.readableName }</a>: { rating.value }
