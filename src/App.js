@@ -17,6 +17,7 @@ import ShowCharacter from './components/characters/ShowCharacter'
 import CreateArtifact from './components/artifacts/CreateArtifact'
 import CreateCharacter from './components/characters/CreateCharacter'
 import ChangeSubstatPrefs from './components/user/changeSubstatPrefs';
+import SeedArtifacts from './components/artifacts/SeedArtifacts';
 
 import './App.css'
 
@@ -88,15 +89,27 @@ const App = () => {
 				/>
 				
 				<Route
-					path="/artifacts/:id"
-					element={ <ShowArtifact user={ user } msgAlert={ msgAlert } />}
-				/>
-				<Route
 					path="/addArtifact"
 					element={
 						<RequireAuth user={ user }>
 							<CreateArtifact msgAlert={msgAlert} user={user}/>
 						</RequireAuth>  
+					}
+				/>
+				<Route
+					path="/artifacts/seed"
+					element={
+						<RequireAuth user={ user }>
+							<SeedArtifacts msgAlert={msgAlert} user={user} />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/artifacts/:id"
+					element={
+					<RequireAuth user={ user }>
+						<ShowArtifact user={ user } msgAlert={ msgAlert } />
+					</RequireAuth>
 					}
 				/>
 

@@ -122,7 +122,7 @@ const ShowArtifact = (props) => {
 
     return (
         <>
-            <Container className="fluid">
+            <Container className="fluid" style={{display: "flex", justifyContent: "center"}}>
                 <Card className="m-2" style={setBgCondition(artifact.slot)}>
                     <Card.Header><h2 style={{color: 'rgb(61, 61, 132)'}}>{ artifact.name }</h2></Card.Header>
                     <Card.Body>

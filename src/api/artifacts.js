@@ -58,3 +58,13 @@ export const removeArtifact = (user, artifactId) => {
         }
     })
 }
+
+export const seedArtifacts = (user) => {
+	return axios({
+		url: `${apiUrl}/artifacts/seed`,
+		method: "GET",
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	});
+}
