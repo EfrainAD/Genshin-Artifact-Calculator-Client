@@ -15,12 +15,12 @@ const EditArtifactModal = (props) => {
 
     console.log('artifact in edit modal', artifact)
 
-    const handleChange = (e) => {
+    const handleChange = (e, index) => {
         setArtifact(prevArtifact => {
             // the key/value pair
             const updatedName = e.target.name
             let updatedValue = e.target.value
-            let updatedId = e.target.id
+            let updatedId = index
 
             // console.logs
             console.log('this is the input type', e.target.type)

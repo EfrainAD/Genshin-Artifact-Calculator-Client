@@ -58,7 +58,7 @@ const ArtifactForm = (props) => {
                 
                 <h5>Substats</h5>
                 <div className='substats-grid'>
-                    {subStatsForm.map((subStatForm, index) =>(
+                    {artifact.substats.map((subStatForm, index) =>(
                         <>
                             <div className="substat">
                                 <Form.Label htmlFor="substatsStat">Stats</Form.Label>
