@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Form, Button, Container } from 'react-bootstrap'
 import { getSubstatPrefs, updateSubstatPrefs } from '../../api/user'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -8,7 +7,6 @@ import '../../components/style.css'
 
 const ChangeSubstatPrefs = (props) => {
   const { user, msgAlert } = props;
-  const navigate = useNavigate();
   const [ subPrefs, setSubPrefs ] = useState(null);
 
   // on component load, set subPrefs to the user's preferences
@@ -77,28 +75,44 @@ const ChangeSubstatPrefs = (props) => {
       }));
   }
 
+  const checkboxStyle = {
+    display: "flex",
+    justifyContent: "center",
+  };
+
   const subPrefsJsx = [];
   for (const sub in subPrefs) {
     subPrefsJsx.push(
-      <Form.Check
-        type="checkbox"
-        key={ sub }
-        label={ sub }
-        id={ sub }
-        defaultChecked={ subPrefs[sub] }
-        onChange={ handleChange }
-      />
+      <div style={ checkboxStyle }>
+        <Form.Check
+          type="checkbox"
+          key={ sub }
+          label={ sub }
+          id={ sub }
+          defaultChecked={ subPrefs[sub] }
+          onChange={ handleChange }
+        />
+      </div>
     )
   }
+
+  const checkGridStyle = {
+    display: "grid",
+    gridTemplate: "repeat(4, 1fr) / repeat(3, 1fr)",
+    width: "50%",
+    margin: "20px auto",
+  };
 
   const subPrefsForm = (
     <Container className="justify-content-center">
       <h3>Substat Preferences</h3>
       <p>Check off all substats that you currently deem important or valuable. The ratings will use these preferences to determine relative strength and value.</p>
-      <p>Note that submitting new preferences will <b>automatically recalculate all of your artifacts' ratinigs</b> using your new preferences.</p>
+      <p>Note that submitting new preferences will <b>automatically recalculate all of your artifacts' ratings</b> using your new preferences.</p>
       <Form onSubmit={handleSubmit}>
-        { subPrefsJsx }
-        <Button type="submit">Save Preferences</Button>
+        <div style={ checkGridStyle }>
+          { subPrefsJsx }
+        </div>
+        <Button type="submit" style={{marginBottom: "20px"}}>Save Preferences</Button>
       </Form>
     </Container>
   );
