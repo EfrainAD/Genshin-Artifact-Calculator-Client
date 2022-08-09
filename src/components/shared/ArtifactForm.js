@@ -3,32 +3,6 @@ import { Form, Button, Container } from 'react-bootstrap'
 const ArtifactForm = (props) => {
     const { artifact, handleChange, heading, handleSubmit } = props
     
-    let subStatsForm = [0,1,2,3]
-    subStatsForm = subStatsForm.map((subStatForm, index) =>(
-        <>
-            <Form.Label htmlFor="substatsStat">The {index + 1} substat
-                s stats</Form.Label>
-                <Form.Control
-                    placeholder="What is it's sub stats?"
-                    type="string"
-                    name="substats.stat"
-                    id={ index }
-                    value={ artifact.substatsStat }
-                    onChange={ handleChange }
-                />
-                <Form.Label htmlFor="substatsAmount">The {index + 1} subStats amount</Form.Label>
-                <Form.Control
-                    placeholder="What is it's main stat amount?"
-                    type="number"
-                    name="substats.amount"
-                    id={ index }
-                    value={ artifact.substatsAmount }
-                    onChange={ handleChange }
-                />
-        </>
-    ))
-    // console.log('HHHHHHIIIIII ', subStatsForm)
-
     return (
         <Container className="justify-content-center ">
             <h3>{heading}</h3>
@@ -84,96 +58,33 @@ const ArtifactForm = (props) => {
                 
                 <h5>Substats</h5>
                 <div className='substats-grid'>
-                {subStatsForm}
-                    <div className="substat">
-                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
-                        <Form.Control 
-                            placeholder="What is it's sub stats?"
-                            type="string"
-                            name="substats.stat"
-                            id="0"
-                            value={ artifact.substats[0].stat }
-                            onChange={ handleChange }
-                        />
-                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's main stat amount?"
-                            type="number"
-                            name="substats.amount"
-                            id="0"
-                            value={ artifact.substats[0].amount }
-                            onChange={ handleChange }
-                        />
-                    </div>
-                    <div className="substat">
-                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's sub stats?"
-                            type="string"
-                            name="substats.stat"
-                            id="1"
-                            value={ artifact.substats[1].stat }
-                            onChange={ handleChange }
-                        />
-                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's main stat amount?"
-                            type="number"
-                            name="substats.amount"
-                            id="1"
-                            value={ artifact.substats[1].amount }
-                            onChange={ handleChange }
-                        />
-                    </div>
-                    <div className="substat">
-                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's sub stats?"
-                            type="string"
-                            name="substats.stat"
-                            id="2"
-                            value={ artifact.substats[2].stat }
-                            onChange={ handleChange }
-                        />
-                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's main stat amount?"
-                            type="number"
-                            name="substats.amount"
-                            id="2"
-                            value={ artifact.substats[2].amount }
-                            onChange={ handleChange }
-                        />
-                    </div>
-                    <div className="substat">
-                        <Form.Label htmlFor="substatsStat">Stats</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's sub stats?"
-                            type="string"
-                            name="substats.stat"
-                            id="3"
-                            value={ artifact.substats[3].stat }
-                            onChange={ handleChange }
-                        />
-                        <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
-                        <Form.Control
-                            placeholder="What is it's main stat amount?"
-                            type="number"
-                            name="substats.amount"
-                            id="3"
-                            value={ artifact.substats[3].amount }
-                            onChange={ handleChange }
-                        />
-                    </div>
+                    {subStatsForm.map((subStatForm, index) =>(
+                        <>
+                            <div className="substat">
+                                <Form.Label htmlFor="substatsStat">Stats</Form.Label>
+                                <Form.Control 
+                                    placeholder="What is it's sub stats?"
+                                    type="string"
+                                    name="substats.stat"
+                                    value={ subStatForm.stat }
+                                    onChange={(e) => handleChange(e, index)}
+                                />
+                                <Form.Label htmlFor="substatsAmount">Amount</Form.Label>
+                                <Form.Control
+                                    placeholder="What is it's main stat amount?"
+                                    type="number"
+                                    name="substats.amount"
+                                    value={ subStatForm.amount }
+                                    onChange={ (e) => handleChange(e, index) }
+                                />
+                            </div>
+                        </>
+                    ))}
                 </div>
-                <br />
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>
     )
 }
-
-// slot: { enum: ["flower", "feather", "sands", "goblet", "circlet"]},
-
 
 export default ArtifactForm
