@@ -15,7 +15,8 @@ import { getAllArtifacts } from '../../api/artifacts'
 const cardContainerStyle = {
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'center-left'
+    justifyContent: 'center-left',
+    marginTop: "25px"
 }
 
 const ArtifactsIndex = (props) => {
@@ -87,7 +88,11 @@ const ArtifactsIndex = (props) => {
 
         return (
             <Card style={{ width: '30%', margin: 5}} key={ artifact._id }>
-                <Card.Header><Link to={`/artifacts/${artifact._id}`}><strong>{ artifact.name }</strong></Link></Card.Header>
+                <Card.Header>
+                    <Link to={`/artifacts/${artifact._id}`} style={{textDecoration: "none"}}>
+                        <h4 style={{margin: 0}}>{ artifact.name }</h4>
+                    </Link>
+                </Card.Header>
                 <Card.Body>
                     <Card.Text style={{textAlign: "left"}}>
                         {mainStatSection}

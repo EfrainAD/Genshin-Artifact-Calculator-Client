@@ -8,6 +8,10 @@ div {
     text-align: center;
 }
 
+div#root {
+    padding-bottom: 35px;
+}
+
 .substats-grid {
     display: grid;
     gap: 1em;
