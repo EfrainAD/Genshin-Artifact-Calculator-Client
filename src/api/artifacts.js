@@ -22,7 +22,6 @@ export const getOneArtifact = (user, id) => {
 			Authorization: `Token token=${user.token}`,
 		}
 	})
-	//`${apiUrl}/artifacts/${id}`)
 }
 
 export const createArtifact = (user, newArtifact) => {

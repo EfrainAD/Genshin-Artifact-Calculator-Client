@@ -13,18 +13,6 @@ import ReactTooltip from 'react-tooltip';
 
 import './artifact.css'
 
-// We need to get the artifact's id from the parameters
-// Then we need to make a request to the api
-// Then we need to display the results in this component
-
-// CLEANUP
-// we'll used a style object to lay out the toy cards I might want this. So I am keep it here.
-// const cardContainerLayout = {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     flexFlow: 'row wrap'
-// }
-
 // Get artifact from the the api and display them.
 
 const ShowArtifact = (props) => {

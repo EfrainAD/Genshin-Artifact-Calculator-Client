@@ -15,7 +15,7 @@ const Index = (props) => {
     return (
         <>
             <IndexButtons filter={filter} setFilter={setFilter} />
-            {filter === 'artifacts' 
+            {filter === 'artifacts'
             ? <ArtifactsIndex msgAlert={ msgAlert } user={ user } /> 
             : <CharactersIndex msgAlert={ msgAlert } user={ user } />}
         </>

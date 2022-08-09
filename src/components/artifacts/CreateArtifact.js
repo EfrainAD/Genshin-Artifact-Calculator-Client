@@ -33,7 +33,7 @@ const CreateArtifact = (props) => {
 
     console.log('this is artifact in createArtifact', artifact)
 
-    const handleChange = (e) => {
+    const handleChange = (e, index) => {
         setArtifact(prevArtifact => {
             // key/value pair in the artifact object.
             const updatedName = e.target.name
@@ -42,7 +42,7 @@ const CreateArtifact = (props) => {
             let updatedArtifact = null
             // Updated key/value that in the substats array 
             // array index - To know with one out of the 4 to update.
-            let updatedId = e.target.id 
+            let updatedId = index
             // used make the array
             let newArr = [...artifact.substats]
             
