@@ -44,7 +44,7 @@ const ShowCharacter = (props) => {
 
     // Delete the character from API if user click the remove button
     const removeTheCharacter = () => {
-        removeCharacter(user, character.id)
+        removeCharacter(user, id)
             // on success send a success message
             .then(() => {
                 msgAlert({
@@ -74,37 +74,25 @@ const ShowCharacter = (props) => {
         <>
             <Container className="fluid">
                 <Card>
-                    <Card.Header>{ character.fullTitle }</Card.Header>
+                    <Card.Header>{ character.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Age: { character.age }</small></div>
-                            <div><small>Type: { character.type }</small></div>
-                            <div><small>
-                                Adoptable: { character.adoptable ? 'yes' : 'no'}
-                            </small></div>
+                            <div><small>Level: { character.level }</small></div>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        {
-                            character.owner && user && character.owner._id === user._id 
-                            ?
-                            <>
-                                <Button onClick={() => setEditModalShow(true)} 
-                                    className="m-2" 
-                                    variant="warning"
-                                >
-                                    Edit Character
-                                </Button>
-                                <Button onClick={() => removeTheCharacter()}
-                                    className="m-2"
-                                    variant="danger"
-                                >
-                                    Remove {character.name}
-                                </Button>
-                            </>
-                            :
-                            null
-                        }
+                        <Button onClick={() => setEditModalShow(true)} 
+                            className="m-2" 
+                            variant="warning"
+                        >
+                            Edit Character
+                        </Button>
+                        <Button onClick={() => removeTheCharacter()}
+                            className="m-2"
+                            variant="danger"
+                        >
+                            Remove {character.name}
+                        </Button>
                     </Card.Footer>
                 </Card>
             </Container>

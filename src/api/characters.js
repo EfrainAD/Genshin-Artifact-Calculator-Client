@@ -24,6 +24,16 @@ export const getOneCharacter = (user, id) => {
 		})
 }
 
+export const fetchValidCharacters = (user) => {
+	return axios({
+		url: `${apiUrl}/characters/fetch-valid`,
+		method: 'GET',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	});
+}
+
 export const createCharacter = (user, newCharacter) => {
 	console.log('newCharacter', newCharacter)
 	return axios({

@@ -12,9 +12,7 @@ const CreateCharacter = (props) => {
 
     const [character, setCharacter] = useState({
         name: '',
-        type: '',
-        age: '',
-        adoptable: false
+        level: '',
     })
 
     console.log('this is character in createCharacter', character)
@@ -76,7 +74,9 @@ const CreateCharacter = (props) => {
 
     return (
         <CharacterForm 
-            character={ character } 
+            character={ character }
+            user={ user }
+            msgAlert= { msgAlert }
             handleChange={ handleChange }
             handleSubmit={ handleSubmit }
             heading="Add a new character!"
