@@ -60,16 +60,43 @@ const ArtifactsIndex = (props) => {
     }
 
     // Puts each artifact in a little card display.
-    const artifactCards = artifacts.map(artifact => (
-        <Card style={{ width: '30%', margin: 5}} key={ artifact._id }>
-            <Card.Header>{ artifact.fullTitle }</Card.Header>
-            <Card.Body>
-                <Card.Text>
-                    <Link to={`/artifacts/${artifact._id}`}>{ artifact.name }</Link>
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    ))
+    const artifactCards = artifacts.map(artifact => {
+        const mainStatSection = (
+            <span>
+                <strong>Main Stat: {artifact.mainStat} </strong>
+                ({artifact.mainStatAmount})
+            </span>
+        );
+
+        const subStatList = artifact.substats.map(sub => {
+            return (
+                <li key={artifact._id + "-" + sub.stat}>
+                    {sub.stat} ({sub.amount})
+                </li>
+            )
+        })
+        
+        const subStatSection = (
+            <div style={{textAlign: "left"}}>
+                <strong>Substats:</strong>
+                <ul style={{listStyleType: "none", padding: "0", margin: "0 1em"}}>
+                    { subStatList }
+                </ul>
+            </div>
+        );
+
+        return (
+            <Card style={{ width: '30%', margin: 5}} key={ artifact._id }>
+                <Card.Header><Link to={`/artifacts/${artifact._id}`}><strong>{ artifact.name }</strong></Link></Card.Header>
+                <Card.Body>
+                    <Card.Text style={{textAlign: "left"}}>
+                        {mainStatSection}
+                        {subStatSection}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        );
+    })
 
     // Display's each artifact in it's little card display.
     return (
