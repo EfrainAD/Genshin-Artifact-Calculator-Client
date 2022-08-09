@@ -19,17 +19,10 @@ const CreateArtifact = (props) => {
         slot: '',
         level: '',
         mainStat: '',
-        mainStatAmount: '',
-        substats: [{
-            stat: '',
-            amount: ''},{
-            stat: '',
-            amount: ''},{
-            stat: '',
-            amount: ''},{
-            stat: '',
-            amount: ''}]
+        mainStatAmount: ''
     })
+    // An array to use to add inside of artifact before being sent to the API
+    const [substats, setSubstats] = useState([{stat: '', amount: ''}])
 
     console.log('this is artifact in createArtifact', artifact)
 
@@ -44,31 +37,31 @@ const CreateArtifact = (props) => {
             // array index - To know with one out of the 4 to update.
             let updatedId = e.target.id 
             // used make the array
-            let newArr = [...artifact.substats]
+            // let newArr = [...artifact.substats]
             
             if (e.target.type === 'number') {
                 updatedValue = parseFloat(e.target.value)
             }
-
             // Detect if the array needs be updated and if it's stat one or amount
-            if (updatedName === 'substats.stat') {
-                newArr[updatedId] = {
-                    ...prevArtifact.substats[updatedId],
-                    stat: updatedValue
-                }
-                updatedArtifact = {substats: [...newArr]}
-            } else if (updatedName === 'substats.amount') {
-                newArr[updatedId] = {
-                    ...prevArtifact.substats[updatedId],
-                    amount: updatedValue
-                }
-                updatedArtifact = {substats: [...newArr]}
+            // if (updatedName === 'substats.stat') {
+            //     newArr[updatedId] = {
+            //         ...prevArtifact.substats[updatedId],
+            //         stat: updatedValue
+            //     }
+            //     updatedArtifact = {substats: [...newArr]}
+            // } else if (updatedName === 'substats.amount') {
+            //     console.log('TYPEOF %s %s', typeof(updatedId), updatedId)
+            //     newArr[updatedId] = {
+            //         ...prevArtifact.substats[updatedId],
+            //         amount: updatedValue
+            //     }
+            //     updatedArtifact = {substats: [...newArr]}
             //If it's nut one of the arrays, nothing special needs to be done to it.
-            } else {
+            // } else {
                 updatedArtifact = {
                     ...prevArtifact.substats,
                     [updatedName]: updatedValue
-                }
+                // }
             }
             
             return {
@@ -78,10 +71,25 @@ const CreateArtifact = (props) => {
         })
     }
 
+    const handleSubstats = (e, index) => {
+        const { name, value} = e.target;
+        console.log('name: ', name)
+        console.log('value: ', value)
+        const substat = [...substats];
+        console.log('substat: ', substat)
+        console.log('index: ', index)
+        substat[index][name] = value;
+        setSubstats(substat);
+    }
+    
+    const handleSubstatsAdd = () => {
+        setSubstats([...substats, {stat: '', amount: ''}]);
+    };
+
     // We'll add a handleSubmit here that makes an api request, then handles the response
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setArtifact({...artifact}, {substats: [...substats]})
         createArtifact(user, artifact)
             // if we're successful, navigate to the show page for the new artifact
             .then(res => { navigate(`/artifacts/${res.data.artifact._id}`)})
@@ -99,16 +107,18 @@ const CreateArtifact = (props) => {
                     heading: 'Oh No!',
                     message: createArtifactFailure,
                     variant: 'danger'
-                })
-            )
+            })
+        )
     }
-
     // the form the user fills out.
     return (
         <ArtifactForm 
-            artifact={ artifact } 
-            handleChange={ handleChange }
-            handleSubmit={ handleSubmit }
+            artifact={artifact} 
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            substats={substats}
+            handleSubstats={handleSubstats}
+            handleSubstatsAdd={handleSubstatsAdd}
             heading="Add a new artifact!"
         />
     )
