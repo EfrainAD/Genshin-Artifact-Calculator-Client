@@ -16,13 +16,12 @@ export const getAllCharacters = (user) => {
 // READ => SHOW
 export const getOneCharacter = (user, id) => {
     return axios({
-		url: apiUrl + '/characters/' + id,
-		method: 'GET',
-		headers: {
-			Authorization: `Token token=${user.token}`,
-		}
-	})
-	//`${apiUrl}/characters/${id}`)
+			url: `${apiUrl}/characters/${id}`,
+			method: 'GET',
+			headers: {
+				Authorization: `Token token=${user.token}`,
+			}
+		})
 }
 
 export const createCharacter = (user, newCharacter) => {

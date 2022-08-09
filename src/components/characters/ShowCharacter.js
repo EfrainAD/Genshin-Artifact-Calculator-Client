@@ -10,7 +10,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 import { getOneCharacter, updateCharacter, removeCharacter } from '../../api/characters'
 import EditCharacterModal from './EditCharacterModal'
 
-// Get artifact from the the api and display them.
+// Get character from the the api and display them.
 
 const ShowCharacter = (props) => {
     const { user, msgAlert } = props
@@ -24,22 +24,21 @@ const ShowCharacter = (props) => {
     const [updated, setUpdated] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
 
-
     console.log('user in props', user)
     console.log('the character in showCharacter', character)
 
-    // Get the artifact from the API
+    // Get the character from the API
     useEffect(() => {
-        getOneCharacter(id)
+        getOneCharacter(user, id)
             .then(res => setCharacter(res.data.character))
-            .catch(err => {                   
+            .catch(err => {
                 msgAlert({
                     heading: 'Error getting character',
                     message: messages.getCharactersFailure,
                     variant: 'danger'
                 })
-                navigate('/')
                 //navigate back to the home page if there's an error fetching
+                navigate('/')
             })
     }, [updated])
 
@@ -66,7 +65,7 @@ const ShowCharacter = (props) => {
             })
     }
     
-    // If the artifact hasn't been loaded yet, show a loading message
+    // If the character hasn't been loaded yet, show a loading message
     if (!character) {
         return <LoadingScreen />
     }

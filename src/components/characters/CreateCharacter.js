@@ -55,7 +55,7 @@ const CreateCharacter = (props) => {
 
         createCharacter(user, character)
             // if we're successful, navigate to the show page for the new character
-            .then(res => { navigate(`/characters/${res.data.character.id}`)})
+            .then(res => { navigate(`/characters/${res.data.character._id}`)})
             // send a success message to the user
             .then(() => {
                 msgAlert({
