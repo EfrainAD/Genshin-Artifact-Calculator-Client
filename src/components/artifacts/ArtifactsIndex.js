@@ -55,9 +55,9 @@ const ArtifactsIndex = (props) => {
     // If artifacts haven't been loaded yet, show a loading message
     if (!artifacts) {
         return <LoadingScreen />
-     // If the user's artifacts=s have been loaded, but they don't have any, so there nothing to display.
+     // If the user's artifacts have been loaded, but they don't have any, so there nothing to display.
     } else if (artifacts.length === 0) {
-        return <p>No artifacts yet. Better add some.</p>
+        return <p>No artifacts yet. Better add some, or <Link to={"/artifacts/seed"}>load some sample artifacts</Link>.</p>
     }
 
     // Puts each artifact in a little card display.
