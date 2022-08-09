@@ -43,6 +43,7 @@ const ArtifactsIndex = (props) => {
             })
     }, [])
 
+    // Start of displaying the page.
     if (!user) {
         return <p>You need to sign in!</p>
     }

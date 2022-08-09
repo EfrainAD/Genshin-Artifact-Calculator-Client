@@ -8,7 +8,7 @@ export const getSubstatPrefs = (user) => {
     headers: {
       Authorization: `Token token=${user.token}`
     }
-  });
+  })
 }
 
 export const updateSubstatPrefs = (user, newPrefs) => {
@@ -19,5 +19,5 @@ export const updateSubstatPrefs = (user, newPrefs) => {
       Authorization: `Token token=${user.token}`
     },
     data: { newPrefs }
-  });
+  })
 }
