@@ -12,9 +12,7 @@ const CreateCharacter = (props) => {
 
     const [character, setCharacter] = useState({
         name: '',
-        type: '',
-        age: '',
-        adoptable: false
+        level: '',
     })
 
     console.log('this is character in createCharacter', character)
@@ -55,7 +53,7 @@ const CreateCharacter = (props) => {
 
         createCharacter(user, character)
             // if we're successful, navigate to the show page for the new character
-            .then(res => { navigate(`/characters/${res.data.character.id}`)})
+            .then(res => { navigate(`/characters/${res.data.character._id}`)})
             // send a success message to the user
             .then(() => {
                 msgAlert({
@@ -76,7 +74,9 @@ const CreateCharacter = (props) => {
 
     return (
         <CharacterForm 
-            character={ character } 
+            character={ character }
+            user={ user }
+            msgAlert= { msgAlert }
             handleChange={ handleChange }
             handleSubmit={ handleSubmit }
             heading="Add a new character!"

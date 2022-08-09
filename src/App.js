@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowArtifact from './components/artifacts/ShowArtifact'
+import ShowCharacter from './components/characters/ShowCharacter'
 import CreateArtifact from './components/artifacts/CreateArtifact'
 import CreateCharacter from './components/characters/CreateCharacter'
 import ChangeSubstatPrefs from './components/user/changeSubstatPrefs';
@@ -78,6 +79,15 @@ const App = () => {
 					</RequireAuth>}
 				/>
 				<Route
+					path="/change-substat-prefs"
+					element={
+						<RequireAuth user={ user }>
+							<ChangeSubstatPrefs msgAlert={msgAlert} user={user} />
+						</RequireAuth>
+					}
+				/>
+				
+				<Route
 					path="/artifacts/:id"
 					element={ <ShowArtifact user={ user } msgAlert={ msgAlert } />}
 				/>
@@ -89,6 +99,11 @@ const App = () => {
 						</RequireAuth>  
 					}
 				/>
+
+				<Route
+					path="/characters/:id"
+					element={ <ShowCharacter user={ user } msgAlert={ msgAlert } />}
+				/>
 				<Route
 					path="/addCharacter"
 					element={
@@ -97,15 +112,8 @@ const App = () => {
 						</RequireAuth>  
 					}
 				/>
-				<Route
-					path="/change-substat-prefs"
-					element={
-						<RequireAuth user={ user }>
-							<ChangeSubstatPrefs msgAlert={msgAlert} user={user} />
-						</RequireAuth>
-					}
-				/>
 			</Routes>
+
 			{msgAlerts.map((msgAlert) => (
 				<AutoDismissAlert
 					key={msgAlert.id}

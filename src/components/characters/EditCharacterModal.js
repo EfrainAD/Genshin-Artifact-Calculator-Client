@@ -77,6 +77,8 @@ const EditCharacterModal = (props) => {
             <Modal.Body>
                 <CharacterForm 
                     character={character}
+                    user={ user }
+                    msgAlert= { msgAlert }
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Update Character"

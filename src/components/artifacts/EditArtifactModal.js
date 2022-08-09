@@ -27,7 +27,7 @@ const EditArtifactModal = (props) => {
             console.log('%s: %s', e.target.name, e.target.value)
 
             if (e.target.type === 'number') {
-                updatedValue = parseInt(e.target.value)
+                updatedValue = Number(e.target.value)
             }
 
             let newArr = [...artifact.substats]

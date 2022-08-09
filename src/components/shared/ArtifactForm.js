@@ -20,13 +20,13 @@ const ArtifactForm = (props) => {
                     <Form.Label htmlFor="slot">Slot</Form.Label>
                         <Form.Select aria-label="Default select example" name="slot" value={ artifact.slot }
                         onChange={ handleChange }>
-                        <option>Open this select menu</option>
-                        <option value="flower" >Flower</option>
-                        <option value="feather" >Feather</option>
-                        <option value="sands" >Sands</option>
-                        <option value="goblet" >Goblet</option>
-                        <option value="circlet" >Circlet</option>
-                    </Form.Select>
+                            <option>Open this select menu</option>
+                            <option value="flower" >Flower</option>
+                            <option value="feather" >Feather</option>
+                            <option value="sands" >Sands</option>
+                            <option value="goblet" >Goblet</option>
+                            <option value="circlet" >Circlet</option>
+                        </Form.Select>
                     
                     <Form.Label htmlFor="level">Level</Form.Label>
                     <Form.Control
